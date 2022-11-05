@@ -30,7 +30,7 @@ class Grid {
 protected:
 	vector<Renderable2D*> sprites = {};
 	vector<vector<vec4>> sprite;
-	void DrawOnScreen(int& x, int& y, const vec4& color); // Draws on screen
+	void DrawOnScreen(int& x, int& y, const vec4& color);
 
 public:
 	Grid();

@@ -1,5 +1,5 @@
 #include "../headers/crosshares.h" 
 
-CrossHares::CrossHares() {
-
+CrossHares::CrossHares(int width, int height) {
 }
+

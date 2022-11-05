@@ -17,12 +17,12 @@ const int width = 1280, height = 720;
 #define _R2048				5
 #define GAME_OF_LIFE		6
 #define CLOCK				7
-
+#define CROSSHARES			8
 // Example of a square
 #define Object				-1
 
 // Current STATE
-#define STATE ANIMATION_PARROT 
+#define STATE CROSSHARES 
 
 
 
@@ -69,6 +69,12 @@ int main()
 	snake.update();	
 
 	vector<Renderable2D *> sprites = snake.getRenderables();
+
+#elif STATE == CROSSHARES
+	CrossHares crosshare(width, height);
+	crosshare.update();
+
+	vector<Renderable2D *> sprites = crosshare.getRenderables();
 
 #elif STATE == PONG
 	Pong pong(32, 32);
@@ -129,45 +135,11 @@ int main()
 
 			vector<Renderable2D *> sprites = grid.getRenderables();
 
-#elif STATE == Object // 6
-			Sample_Object object;
+#elif STATE == CROSSHARES
+			crosshare.update();
 
-			vector<Renderable2D *> sprites = object.getRenderables();
+			vector<Renderable2D *> sprites = crosshare.getRenderables();
 
-#elif STATE == ANIMATION_PARROT
-			animation.party_parrot();
-			animation.update();
-
-			vector<Renderable2D *> sprites = animation.getRenderables();
-
-#elif STATE == SUDOKU
-			sudoku.set_problem();
-			sudoku.update();
-			
-			vector<Renderable2D *> sprites = sudoku.getRenderables();
-
-#elif STATE == SNAKE
-			if (window.isKeyPressed(GLFW_KEY_W)) snake.w_key_pressed();
-			if (window.isKeyPressed(GLFW_KEY_A)) snake.a_key_pressed();
-			if (window.isKeyPressed(GLFW_KEY_S)) snake.s_key_pressed();
-			if (window.isKeyPressed(GLFW_KEY_D)) snake.d_key_pressed();
-
-			snake.Draw();
-			snake.update();
-			snake.Input();
-			snake.Logic();
-
-			vector<Renderable2D *> sprites = snake.getRenderables();
-
-#elif STATE == PONG
-			if (window.isKeyPressed(GLFW_KEY_A)) pong.a_key_pressed();
-			if (window.isKeyPressed(GLFW_KEY_D)) pong.d_key_pressed();
-			if (window.isKeyPressed(GLFW_KEY_J)) pong.j_key_pressed();
-			if (window.isKeyPressed(GLFW_KEY_L)) pong.l_key_pressed();
-
-			pong.Run();
-
-			vector<Renderable2D *> sprites = pong.getRenderables();
 
 #elif STATE == _R2048
 			if (window.isKeyPressed(GLFW_KEY_Q)) r2048.q_key_pressed();
@@ -182,17 +154,6 @@ int main()
 
 			vector<Renderable2D *> sprites = r2048.getRenderables();
 
-#elif STATE == GAME_OF_LIFE 
-			conway.Draw();
-			conway.update();
-			
-			vector<Renderable2D *> sprites = conway.getRenderables();
-
-#elif STATE == CLOCK
-			clock.Draw();
-			clock.update();
-			
-			vector<Renderable2D *> sprites = clock.getRenderables();
 
 #endif
 

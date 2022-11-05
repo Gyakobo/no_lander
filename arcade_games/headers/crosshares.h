@@ -1,11 +1,16 @@
 #ifndef CROSSHARES_H
 #define CROSSHARES_H
 
-class CrossHares {
+#include "../../headers/alt_grid.h"
+#include <vector>
+
+using namespace std;
+
+class CrossHares : public Alt_Grid {
 private:
 
 public:
-    CrossHares();
+    CrossHares(int width, int height);
 };
 
 #endif

@@ -94,32 +94,6 @@ void Grid::alpha_numeric_test()
 
     int quantity_of_nums = 8;
 
-    /*for (int character = 0; character < quantity_of_nums; character++) {
-        for (int x = 0; x < su_number[character].at(0).size(); x++) {
-            for (int y = 0; y < 3; y++)
-            {
-                y_ = 8 * 4 - 1 - y;
-
-                x_ = x + numb_width;
-                // x_ = x + character * 4;
-
-                if (su_number.at(character).at(y).at(x) && change_color)
-                    DrawOnScreen(x_, y_, WHITE);
-                else if (su_number.at(character).at(y).at(x) && !change_color)
-                    DrawOnScreen(x_, y_, RED);
-                else
-                    DrawOnScreen(x_, y_, BLACK);
-            }
-        }
-        if (character == 2 || character == 5)
-            numb_width += su_number[character].at(0).size() + 3;
-        else 
-            numb_width += su_number[character].at(0).size() + 0;
-        
-        // numb_width += su_number[character].at(0).size() + 0;
-        change_color = !change_color;
-    }*/
-
     for (int character = 0; character < quantity_of_nums; character++) {
         for (int x = 0; x < number[character].at(0).size(); x++) {
             for (int y = 0; y < number[character].size(); y++)
@@ -127,7 +101,6 @@ void Grid::alpha_numeric_test()
                 y_ = 8 * 4 - 1 - y;
 
                 x_ = x + numb_width;
-                // x_ = x + character * 4;
 
                 if (number.at(character).at(y).at(x) && change_color)
                     DrawOnScreen(x_, y_, WHITE);
@@ -137,10 +110,6 @@ void Grid::alpha_numeric_test()
                     DrawOnScreen(x_, y_, BLACK);
             }
         }
-        /*if (character == 2 || character == 5)
-            numb_width += number[character].at(0).size() + 3;
-        else 
-            numb_width += number[character].at(0).size() + 0;*/
         
         numb_width += number[character].at(0).size() + 0;
         change_color = !change_color;
