@@ -2,7 +2,7 @@
 
 using namespace std;
 
-const int width = 1280, height = 720;
+const int width = 1000, height = 1000;
 
 // Default Settings
 #define _DEFAULT 			0
@@ -32,8 +32,12 @@ int main()
 	Window window("Box Simulator", width, height);
 
 	Shader shader("shaders/vertex_shader.glsl", "shaders/fragment_shader.glsl", "shaders/geometric_shader.glsl");
+
+	float x, y; 
+	float _x = 0.0f, _y = 0.0f, _z = -80.65f; 
+
 	shader.enable();
-	shader.setUniformMat4("ml_matrix", mat4::translation(vec3(-8, -8, 0.0f)));
+	shader.setUniformMat4("ml_matrix", mat4::translation(vec3(_x, _y, _z)));
 
 	glViewport(0, 0, width, height);
 
@@ -45,67 +49,16 @@ int main()
 
 	vector<Renderable2D *> sprites = grid.getRenderables();
 
-#elif STATE == Object // 6
-	Sample_Object object;
-
-	vector<Renderable2D *> sprites = object.getRenderables();
-
-#elif STATE == ANIMATION_PARROT
-	Animation animation;
-	animation.update();
-
-	vector<Renderable2D *> sprites = animation.getRenderables();
-
-#elif STATE == SUDOKU
-	Sudoku sudoku;
-	//sudoku.shrinking_square(); // Doesn't really work
-	sudoku.update();
-
-	vector<Renderable2D *> sprites = sudoku.getRenderables();
-
-#elif STATE == SNAKE
-	Snake snake;
-	snake.Setup();
-	snake.update();	
-
-	vector<Renderable2D *> sprites = snake.getRenderables();
-
-#elif STATE == CROSSHARES
+#else STATE == CROSSHARES
 	CrossHares crosshare(width, height);
 	crosshare.update();
 
 	vector<Renderable2D *> sprites = crosshare.getRenderables();
 
-#elif STATE == PONG
-	Pong pong(32, 32);
-	pong.update();
-
-	vector<Renderable2D *> sprites = pong.getRenderables();
-
-#elif STATE == _R2048 
-	R2048 r2048;
-	r2048.update();
-
-	vector<Renderable2D *> sprites = r2048.getRenderables();
-
-#elif STATE == GAME_OF_LIFE
-	Game_of_Life conway(32, 32);
-	conway.update();
-
-	vector<Renderable2D *> sprites = conway.getRenderables();
-
-#elif STATE == CLOCK
-	_Clock clock;
-	clock.update();
-	
-	vector<Renderable2D *> sprites = clock.getRenderables();
-
 #endif
 
 	for (int i = 0; i < sprites.size(); i++)
 		layer.add(sprites.at(i));
-
-	float x, y;
 
 	chrono::steady_clock::time_point begin = chrono::steady_clock::now();
 	chrono::steady_clock::time_point end = begin;
@@ -139,7 +92,20 @@ int main()
 			crosshare.update();
 
 			vector<Renderable2D *> sprites = crosshare.getRenderables();
+			
+			if (window.isKeyPressed(GLFW_KEY_Q)) _z += 3.0f;
+			if (window.isKeyPressed(GLFW_KEY_E)) _z -= 3.0f;
+			
+			if (window.isKeyPressed(GLFW_KEY_W)) _y += 1.5f;
+			if (window.isKeyPressed(GLFW_KEY_S)) _y -= 1.5f;
+			
+			if (window.isKeyPressed(GLFW_KEY_A)) _x -= 1.5f;
+			if (window.isKeyPressed(GLFW_KEY_D)) _x += 1.5f;
+			
+			shader.enable();
+			shader.setUniformMat4("ml_matrix", mat4::translation(vec3(_x, _y, _z)));
 
+			cout << "x = " << _x << ", y = " << _y << ", z = " << _z << endl;
 
 #elif STATE == _R2048
 			if (window.isKeyPressed(GLFW_KEY_Q)) r2048.q_key_pressed();

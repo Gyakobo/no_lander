@@ -41,7 +41,6 @@
 
 // Box_with_round_corners
 #include "grid.h"
-#include "alt_grid.h"
 #include "points.h"
 #include "Animation.h"
 #include "../arcade_games/headers/crosshares.h"

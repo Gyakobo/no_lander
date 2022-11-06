@@ -8,12 +8,10 @@ uniform mat4 camMatrix = mat4(1.0);
 uniform mat4 pr_matrix; 				// projection matrix
 uniform mat4 vw_matrix = mat4(1.0); 	// view matrix
 uniform mat4 ml_matrix = mat4(1.0); 	// model matrix
-uniform mat4 rt_matrix_x = mat4(1.0); 	// rotation matrix
-uniform mat4 rt_matrix_y = mat4(1.0); 	// rotation matrix
 
 out vec4 frag_color;
 
 void main() {
-	gl_Position =  	pr_matrix * ml_matrix * vw_matrix * rt_matrix_x * rt_matrix_y * position;
+	gl_Position =  	pr_matrix * ml_matrix * vw_matrix * position;
 	frag_color = 	in_color;
 }

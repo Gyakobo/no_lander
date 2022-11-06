@@ -11,13 +11,14 @@ class Point {
 		vec4 color;
 
 	public:
+		Point();
 		Point(vec3 pos, vec4 color) {
 			this->pos = pos;
 			this->color = color;
 		}
 
 		vec3 get_pos() { return pos;}
-		vec3 get_color() { return color;}
-}
+		vec4 get_color() { return color;}
+};
 
 #endif
